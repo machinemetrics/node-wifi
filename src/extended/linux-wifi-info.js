@@ -1,6 +1,6 @@
 var exec = require('child_process').exec;
-var networkUtils = require('./network-utils');
-var env = require('./env');
+var networkUtils = require('../network-utils');
+var env = require('../env');
 
 function getWifiInfo(config, callback) {
   var commandStr = "nmcli dev show wlp1s0 | grep GENERAL.CONNECTION | awk '{print $2}' " 
