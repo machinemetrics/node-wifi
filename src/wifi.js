@@ -10,6 +10,8 @@ var macConnect = require('./mac-connect.js');
 var macScan = require('./mac-scan.js');
 var macGetCurrentConnections = require('./mac-current-connections');
 
+var linuxGetWifiInfo = require('./extended/linux-wifi-info')
+
 var config = {
     debug : false,
     iface : null
@@ -36,6 +38,9 @@ function init(options) {
     var getCurrentConnections = function () {
         throw new Error("ERROR : not available for this OS");
     };
+    var getWifiInfo = function () {
+        throw new Error("ERROR : not available for this OS");
+    }
 
     switch(process.platform) {
         case "linux":
@@ -43,6 +48,8 @@ function init(options) {
             scan = linuxScan(config);
             disconnect = linuxDisconnect(config);
             getCurrentConnections = linuxGetCurrentConnections(config);
+            
+            getWifiInfo = linuxGetWifiInfo(config);
             break;
         case "darwin":
             connect = macConnect(config);
@@ -62,6 +69,7 @@ function init(options) {
     exports.connect = connect;
     exports.disconnect = disconnect;
     exports.getCurrentConnections = getCurrentConnections;
+    exports.getWifiInfo = getWifiInfo;
 }
 
 exports.init = init;
@@ -78,5 +86,9 @@ exports.disconnect = function () {
 };
 
 exports.getCurrentConnections = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.getWifiInfo = function () {
     throw new Error("ERROR : use init before");
 };
