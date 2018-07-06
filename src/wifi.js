@@ -10,7 +10,12 @@ var macConnect = require('./mac-connect.js');
 var macScan = require('./mac-scan.js');
 var macGetCurrentConnections = require('./mac-current-connections');
 
-var linuxGetWifiInfo = require('./extended/linux-wifi-info')
+// extended
+var linuxGetWifiInfo = require('./extended/linux-wifi-info');
+var linuxEnableWifi = require('./extended/linux-wifi-enable');
+var linuxDisasbleWifi = require('./extended/linux-wifi-disable');
+var linuxRescanWifi = require('./extended/linux-wifi-rescan');
+// extended
 
 var config = {
     debug : false,
@@ -38,9 +43,21 @@ function init(options) {
     var getCurrentConnections = function () {
         throw new Error("ERROR : not available for this OS");
     };
+
+    // extended
     var getWifiInfo = function () {
         throw new Error("ERROR : not available for this OS");
-    }
+    };
+    var enableWifi = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+    var disableWifi = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+    var rescanWifi = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+    // extended
 
     switch(process.platform) {
         case "linux":
@@ -48,8 +65,13 @@ function init(options) {
             scan = linuxScan(config);
             disconnect = linuxDisconnect(config);
             getCurrentConnections = linuxGetCurrentConnections(config);
-            
+
+            // extended
             getWifiInfo = linuxGetWifiInfo(config);
+            enableWifi = linuxEnableWifi(config);
+            disableWifi = linuxDisasbleWifi(config);
+            rescanWifi = linuxRescanWifi(config);
+            // extended
             break;
         case "darwin":
             connect = macConnect(config);
@@ -69,7 +91,13 @@ function init(options) {
     exports.connect = connect;
     exports.disconnect = disconnect;
     exports.getCurrentConnections = getCurrentConnections;
+
+    //extended
     exports.getWifiInfo = getWifiInfo;
+    exports.enableWifi = enableWifi;
+    exports.disableWifi = disableWifi;
+    exports.rescanWifi = rescanWifi;
+    //extended
 }
 
 exports.init = init;
@@ -89,6 +117,20 @@ exports.getCurrentConnections = function () {
     throw new Error("ERROR : use init before");
 };
 
+// extended
 exports.getWifiInfo = function () {
     throw new Error("ERROR : use init before");
 };
+
+exports.enableWifi = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.disableWifi = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.rescanWifi = function () {
+    throw new Error("ERROR : use init before");
+};
+//extended
