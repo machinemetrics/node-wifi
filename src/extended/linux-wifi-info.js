@@ -10,14 +10,13 @@ function getWifiInfo(config, callback) {
         callback && callback(err);
         return;
       }
-      // data = stdOut.split('\n');
-      // let wifiInfo = {
-      //   ssid: data[0],
-      //   address: data[1],
-      //   MAC: data[2]
-      // };
-      console.log('Wifi Info from node-wifi', stdOut);
-      callback && callback(null, stdOut);
+      data = stdOut.split('\n');
+      let wifiInfo = {
+        ssid: data[0],
+        address: data[1],
+        MAC: data[2]
+      };
+      callback && callback(null, wifiInfo);
   });
 }
 
