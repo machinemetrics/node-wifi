@@ -22,7 +22,7 @@ function getWiredInfoAll(config, device, callback) {
         " | grep IP4.ADDRESS | awk '{print $2}' && nmcli dev show " + element +
         " | grep IP4.GATEWAY | awk '{print $2}' && nmcli dev show " + element +
         " | grep GENERAL.HWADDR | awk '{print $2}'";
-      exec(helpCommandStr, env, function (err), stdOut) {
+      exec(helpCommandStr, env, function (err, stdOut) {
         if (err) {
           return;
         }
