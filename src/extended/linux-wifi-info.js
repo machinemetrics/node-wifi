@@ -11,7 +11,7 @@ function getWifiInfo(config, callback) {
         return;
       }
       data = stdOut.split('\n');
-      let wifiInfo = {
+      var wifiInfo = {
         ssid: data[0],
         address: data[1],
         MAC: data[2]

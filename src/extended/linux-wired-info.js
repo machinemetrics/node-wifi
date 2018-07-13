@@ -14,8 +14,8 @@ function getWiredInfo(config, device, callback) {
         callback && callback(err);
         return;
       }
-      data = stdOut.split('\n');
-      let wiredInfo = {
+      var data = stdOut.split('\n');
+      var wiredInfo = {
         address: data[0].split('/')[0],
         subnet: data[0].split('/')[1],
         gateway: data[1],
