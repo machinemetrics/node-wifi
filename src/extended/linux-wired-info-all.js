@@ -36,7 +36,7 @@ function getWiredInfoAll(config, device, callback) {
         console.log('Evo mi info o prvom enpa39', wiredInfo);
         wiredNetworksInfo.push(wiredInfo);
         console.log('Evo ih pushao', wiredNetworksInfo)
-      }
+      });
     });
 
     console.log('Sinhron sam', wiredNetworksInfo);
