@@ -80,7 +80,7 @@ function init(options) {
             disableWifi = linuxDisasbleWifi(config);
             rescanWifi = linuxRescanWifi(config);
             getWiredInfo = linuxGetWiredInfo(config);
-            getWiredInfoAll = linuxGetWiredConnections(config);
+            getWiredConnections = linuxGetWiredConnections(config);
             // extended
             break;
         case "darwin":
