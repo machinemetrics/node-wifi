@@ -2,8 +2,7 @@ var exec = require('child_process').exec;
 var networkUtils = require('../network-utils');
 var env = require('../env');
 
-function getWiredConnections(config, device, callback) {
-
+function getWiredConnections(config, callback) {
   var commandStr = "nmcli connection show --active | grep 'Wired connection' | awk '{print $6}'"
 
   exec(commandStr, env, function (err, stdOut) {
@@ -13,7 +12,7 @@ function getWiredConnections(config, device, callback) {
     }
     var wiredConnections = stdOut.split('\n');
     console.log('Evo iz node-wifi getWiredConnections', wiredConnections);
-    
+
     callback && callback(null, wiredConnections);
   });
 }
