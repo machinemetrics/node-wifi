@@ -11,13 +11,9 @@ function getWiredConnections(config, device, callback) {
       callback && callback(err);
       return;
     }
-    var wiredConnections = [];
-    console.log('Evo iz node-wifi getWiredConnections', stdOut)
-    var connections = stdOut.split('\n');
-    if (connections.length > 0) {
-      wiredConnections = connections;
-    }
-
+    var wiredConnections = stdOut.split('\n');
+    console.log('Evo iz node-wifi getWiredConnections', wiredConnections);
+    
     callback && callback(null, wiredConnections);
   });
 }
