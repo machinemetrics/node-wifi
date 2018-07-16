@@ -16,7 +16,7 @@ var linuxEnableWifi = require('./extended/linux-wifi-enable');
 var linuxDisasbleWifi = require('./extended/linux-wifi-disable');
 var linuxRescanWifi = require('./extended/linux-wifi-rescan');
 var linuxGetWiredInfo = require('./extended/linux-wired-info');
-var linuxGetWiredInfoAll = require('./extended/linux-wired-info-all');
+var linuxGetWiredConnections = require('./extended/linux-wired-connections');
 // extended
 
 var config = {
@@ -62,7 +62,7 @@ function init(options) {
     var getWiredInfo = function () {
         throw new Error("ERROR : not available for this OS");
     };
-    var getWiredInfoAll = function () {
+    var getWiredConnections = function () {
         throw new Error("ERROR : not available for this OS");
     };
     // extended
@@ -80,7 +80,7 @@ function init(options) {
             disableWifi = linuxDisasbleWifi(config);
             rescanWifi = linuxRescanWifi(config);
             getWiredInfo = linuxGetWiredInfo(config);
-            getWiredInfoAll = linuxGetWiredInfoAll(config);
+            getWiredInfoAll = linuxGetWiredConnections(config);
             // extended
             break;
         case "darwin":
@@ -108,7 +108,7 @@ function init(options) {
     exports.disableWifi = disableWifi;
     exports.rescanWifi = rescanWifi;
     exports.getWiredInfo = getWiredInfo;
-    exports.getWiredInfoAll = getWiredInfoAll;
+    exports.getWiredConnections = getWiredConnections;
     //extended
 }
 
@@ -150,7 +150,7 @@ exports.getWiredInfo = function () {
     throw new Error("ERROR : use init before");
 };
 
-exports.getWiredInfoAll = function () {
+exports.getWiredConnections = function () {
     throw new Error("ERROR : use init before");
 };
 //extended
