@@ -15,6 +15,8 @@ function getWiredInfo(config, device, callback) {
         return;
       }
       var data = stdOut.split('\n');
+      data.pop();
+      
       var wiredInfo;
       if (data.length > 1) {
         wiredInfo = {

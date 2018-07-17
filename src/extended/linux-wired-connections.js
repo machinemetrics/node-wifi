@@ -12,6 +12,7 @@ function getWiredConnections(config, callback) {
       return;
     }
     var wiredConnections = stdOut.split('\n');
+    wiredConnections.pop();
 
     callback && callback(null, wiredConnections);
   });
