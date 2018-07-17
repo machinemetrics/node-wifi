@@ -4,7 +4,7 @@ var env = require('../env');
 
 function getWiredConnections(config, callback) {
 
-  var commandStr = "nmcli connection show --active | grep 'Wired connection' | awk '{print $6}'"
+  var commandStr = "nmcli dev status | grep 'enp' | awk '{print $1}'"
 
   exec(commandStr, env, function (err, stdOut) {
     if (err) {

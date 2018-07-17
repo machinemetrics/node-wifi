@@ -15,12 +15,24 @@ function getWiredInfo(config, device, callback) {
         return;
       }
       var data = stdOut.split('\n');
-      var wiredInfo = {
-        address: data[0].split('/')[0],
-        subnet: data[0].split('/')[1],
-        gateway: data[1],
-        MAC: data[2]
-      };
+      var wiredInfo;
+      if (data.length > 1) {
+        wiredInfo = {
+          address: data[0].split('/')[0],
+          subnet: data[0].split('/')[1],
+          gateway: data[1],
+          MAC: data[2],
+          connected: true
+        };
+      } else {
+        wiredInfo = {
+          address: '',
+          subnet: '',
+          gateway: '',
+          MAC: data[0],
+          connected: false
+        };
+      }
 
       callback && callback(null, wiredInfo);
   });
