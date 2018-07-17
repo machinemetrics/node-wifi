@@ -27,20 +27,20 @@ function getWiredInfo(config, device, callback) {
 }
 
 module.exports = function (config) {
-  return function (callback) {
+  return function (device, callback) {
     if (callback) {
-      getWiredInfo(config, callback);
+      getWiredInfo(config, device, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        getWiredInfo(config, function (err, networks) {
+        getWiredInfo(config, device, function (err, networks) {
           if (err) {
             reject(err);
           } else {
             resolve(networks);
           }
-        });
+        })
       });
     }
   }
-};
 
+};
