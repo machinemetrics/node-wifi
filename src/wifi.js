@@ -17,6 +17,9 @@ var linuxDisasbleWifi = require('./extended/linux-wifi-disable');
 var linuxRescanWifi = require('./extended/linux-wifi-rescan');
 var linuxGetWiredInfo = require('./extended/linux-wired-info');
 var linuxGetWiredConnections = require('./extended/linux-wired-connections');
+var linuxCreateConnection = require('./extended/linux-create-connection');
+var linuxGetConnection = require('./extended/linux-get-connection');
+var linuxRemoveConnection = require('./extended/linux-remove-connection');
 // extended
 
 var config = {
@@ -65,6 +68,15 @@ function init(options) {
     var getWiredConnections = function () {
         throw new Error("ERROR : not available for this OS");
     };
+    var getConnection = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+    var removeConnection = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+    var createConnection = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
     // extended
 
     switch(process.platform) {
@@ -81,6 +93,9 @@ function init(options) {
             rescanWifi = linuxRescanWifi(config);
             getWiredInfo = linuxGetWiredInfo(config);
             getWiredConnections = linuxGetWiredConnections(config);
+            getConnection = linuxGetConnection(config);
+            removeConnection = linuxRemoveConnection(config);
+            createConnection = linuxCreateConnection(config);
             // extended
             break;
         case "darwin":
@@ -109,6 +124,9 @@ function init(options) {
     exports.rescanWifi = rescanWifi;
     exports.getWiredInfo = getWiredInfo;
     exports.getWiredConnections = getWiredConnections;
+    exports.getConnection = getConnection;
+    exports.removeConnection = removeConnection;
+    exports.createConnection = createConnection;
     //extended
 }
 
@@ -151,6 +169,18 @@ exports.getWiredInfo = function () {
 };
 
 exports.getWiredConnections = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.getConnection = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.createConnection = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.removeConnection = function () {
     throw new Error("ERROR : use init before");
 };
 //extended
