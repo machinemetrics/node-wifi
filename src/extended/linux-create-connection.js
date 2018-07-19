@@ -3,9 +3,6 @@ var util = require('util');
 var env = require('../env');
 
 function createConnection(config, info, callback) {
-  var commandStr = "nmcli -w 10 device wifi connect '" + ap.ssid + "'" +
-      " password " + "'" + ap.password + "'" ;
-
   var commandStr;
   if (info.manual) {
     commandStr = "nmcli con add ifname " + info.ifname + " type ethernet ip4 " + info.ip + " gw4 " + info.gw;
