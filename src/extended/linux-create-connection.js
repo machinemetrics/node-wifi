@@ -1,6 +1,6 @@
 var exec = require('child_process').exec;
 var util = require('util');
-var env = require('./env');
+var env = require('../env');
 
 function createConnection(config, info, callback) {
   var commandStr = "nmcli -w 10 device wifi connect '" + ap.ssid + "'" +
