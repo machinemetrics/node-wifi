@@ -11,20 +11,19 @@ function rescanWifi(config, callback) {
 }
 
 module.exports = function (config) {
-
-  return function(ap, callback) {
+  return function (callback) {
     if (callback) {
-      rescanWifi(config, ap, callback);
+      rescanWifi(config, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        rescanWifi(config, ap, function (err) {
+        rescanWifi(config, function (err, networks) {
           if (err) {
             reject(err);
           } else {
-            resolve();
+            resolve(networks);
           }
-        })
+        });
       });
     }
   }
-}
+};

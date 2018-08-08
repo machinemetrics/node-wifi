@@ -11,20 +11,19 @@ function disableWifi(config, callback) {
 }
 
 module.exports = function (config) {
-
-  return function(ap, callback) {
+  return function (callback) {
     if (callback) {
-      disableWifi(config, ap, callback);
+      disableWifi(config, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        disableWifi(config, ap, function (err) {
+        disableWifi(config, function (err, networks) {
           if (err) {
             reject(err);
           } else {
-            resolve();
+            resolve(networks);
           }
-        })
+        });
       });
     }
   }
-}
+};

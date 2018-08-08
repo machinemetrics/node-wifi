@@ -11,20 +11,19 @@ function enableWifi(config, callback) {
 }
 
 module.exports = function (config) {
-
-  return function(ap, callback) {
+  return function (callback) {
     if (callback) {
-      enableWifi(config, ap, callback);
+      enableWifi(config, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        enableWifi(config, ap, function (err) {
+        enableWifi(config, function (err, networks) {
           if (err) {
             reject(err);
           } else {
-            resolve();
+            resolve(networks);
           }
-        })
+        });
       });
     }
   }
-}
+};
