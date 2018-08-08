@@ -6,6 +6,7 @@ function disableWifi(config, callback) {
   var commandStr = "nmcli radio wifi off";
 
   exec(commandStr, env, function(err, resp) {
+      console.log('Node-wifi disabling wifi');
       callback && callback(err);
   });
 }
