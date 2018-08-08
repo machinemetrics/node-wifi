@@ -12,7 +12,7 @@ function getWifiInfo(config, callback) {
       }
       var data = stdOut.split('\n');
       var wifiInfo = {
-        status: data[0]
+        status: data[0],
         ssid: data[1],
         address: data[2],
         MAC: data[3],
