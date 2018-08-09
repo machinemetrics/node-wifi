@@ -16,11 +16,11 @@ module.exports = function (config) {
       enableWifi(config, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        enableWifi(config, function (err, networks) {
+        enableWifi(config, function (err) {
           if (err) {
             reject(err);
           } else {
-            resolve(networks);
+            resolve();
           }
         });
       });

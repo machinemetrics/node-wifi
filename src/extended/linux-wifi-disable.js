@@ -22,11 +22,11 @@ module.exports = function (config) {
       disableWifi(config, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        disableWifi(config, function (err, networks) {
+        disableWifi(config, function (err) {
           if (err) {
             reject(err);
           } else {
-            resolve(networks);
+            resolve();
           }
         });
       });
