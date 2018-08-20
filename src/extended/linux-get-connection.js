@@ -11,10 +11,9 @@ function getConnection(config, device, callback) {
         callback && callback(err);
         return;
       }
-      var data = stdOut.split('\n');
-      data.pop();
+      var data = stdOut;
       
-      callback && callback(null, wiredInfo);
+      callback && callback(null, data);
   });
 }
 
