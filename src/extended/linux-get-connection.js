@@ -4,7 +4,7 @@ var env = require('../env');
 
 function getConnection(config, device, callback) {
 
-  var commandStr = "nmcli -f UUID, DEVICE con show | grep " + device + " | awk '{print &1}'";
+  var commandStr = "nmcli -t -f UUID,DEVICE con show | grep " + device + " | awk -F':' '{print $1}'"
 
   exec(commandStr, env, function(err, stdOut) {
       if (err) {
