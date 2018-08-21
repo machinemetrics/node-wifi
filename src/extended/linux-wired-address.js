@@ -11,7 +11,7 @@ function getWiredDeviceAddress(config, device, callback) {
         callback && callback(err);
         return;
       }
-      var address = stdOut;
+      var address = stdOut.split('\n')[0];
 
       callback && callback(null, address);
   });
