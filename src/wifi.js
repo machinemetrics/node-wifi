@@ -15,11 +15,13 @@ var linuxGetWifiInfo = require('./extended/linux-wifi-info');
 var linuxEnableWifi = require('./extended/linux-wifi-enable');
 var linuxDisasbleWifi = require('./extended/linux-wifi-disable');
 var linuxRescanWifi = require('./extended/linux-wifi-rescan');
-var linuxGetWiredInfo = require('./extended/linux-wired-info');
-var linuxGetWiredConnections = require('./extended/linux-wired-connections');
-var linuxCreateConnection = require('./extended/linux-create-connection');
-var linuxGetConnection = require('./extended/linux-get-connection');
-var linuxRemoveConnection = require('./extended/linux-remove-connection');
+
+var linuxCreateConnection = require('./extended/linux-connection-create');
+var linuxRemoveConnection = require('./extended/linux-connection-remove');
+var linuxGetConnectionInfo = require('./extended/linux-connection-info');
+
+var linuxGetWiredDevices = require('./extended/linux-wired-devices');
+var linuxGetWiredAddress = require('./extended/linux-wired-address');
 // extended
 
 var config = {
@@ -62,19 +64,21 @@ function init(options) {
     var rescanWifi = function () {
         throw new Error("ERROR : not available for this OS");
     };
-    var getWiredInfo = function () {
-        throw new Error("ERROR : not available for this OS");
-    };
-    var getWiredConnections = function () {
-        throw new Error("ERROR : not available for this OS");
-    };
-    var getConnection = function () {
+
+    var getConnectionInfo = function () {
         throw new Error("ERROR : not available for this OS");
     };
     var removeConnection = function () {
         throw new Error("ERROR : not available for this OS");
     };
     var createConnection = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+
+    var getWiredDevices = function () {
+        throw new Error("ERROR : not available for this OS");
+    };
+    var getWiredAddress = function () {
         throw new Error("ERROR : not available for this OS");
     };
     // extended
@@ -91,11 +95,13 @@ function init(options) {
             enableWifi = linuxEnableWifi(config);
             disableWifi = linuxDisasbleWifi(config);
             rescanWifi = linuxRescanWifi(config);
-            getWiredInfo = linuxGetWiredInfo(config);
-            getWiredConnections = linuxGetWiredConnections(config);
-            getConnection = linuxGetConnection(config);
+
+            getConnectionInfo = linuxGetConnectionInfo(config);
             removeConnection = linuxRemoveConnection(config);
             createConnection = linuxCreateConnection(config);
+
+            getWiredDevices = linuxGetWiredDevices(config);
+            getWiredAddress = linuxGetWiredAddress(config);
             // extended
             break;
         case "darwin":
@@ -122,11 +128,13 @@ function init(options) {
     exports.enableWifi = enableWifi;
     exports.disableWifi = disableWifi;
     exports.rescanWifi = rescanWifi;
-    exports.getWiredInfo = getWiredInfo;
-    exports.getWiredConnections = getWiredConnections;
-    exports.getConnection = getConnection;
+    
+    exports.getConnectionInfo = getConnectionInfo;
     exports.removeConnection = removeConnection;
     exports.createConnection = createConnection;
+    
+    exports.getWiredDevices = getWiredDevices;
+    exports.getWiredAddress = getWiredAddress;
     //extended
 }
 
@@ -164,15 +172,7 @@ exports.rescanWifi = function () {
     throw new Error("ERROR : use init before");
 };
 
-exports.getWiredInfo = function () {
-    throw new Error("ERROR : use init before");
-};
-
-exports.getWiredConnections = function () {
-    throw new Error("ERROR : use init before");
-};
-
-exports.getConnection = function () {
+exports.getConnectionInfo = function () {
     throw new Error("ERROR : use init before");
 };
 
@@ -181,6 +181,14 @@ exports.createConnection = function () {
 };
 
 exports.removeConnection = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.getWiredDevices = function () {
+    throw new Error("ERROR : use init before");
+};
+
+exports.getWiredAddress = function () {
     throw new Error("ERROR : use init before");
 };
 //extended
