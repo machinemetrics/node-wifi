@@ -3,9 +3,6 @@ var networkUtils = require('../network-utils');
 var env = require('../env');
 
 function getWiredDevices(config, callback) {
-
-
-  console.log('USAO U GET WIRED DEVICES');
   var commandStr = "nmcli -t -f DEVICE,TYPE,STATE,CONNECTION dev status | grep ethernet"
 
   exec(commandStr, env, function(err, stdOut) {
@@ -15,21 +12,19 @@ function getWiredDevices(config, callback) {
       }
       var data = stdOut.split('\n');
       data.pop();
-      console.log('GET WIRED DEVICES', data);
       var wiredDevices = [];
 
       data.forEach(element => {
         var info = element.split(':');
-        info.pop();
-        console.log('ELEMENT', element);
-        console.log('INFO', info);
         wiredDevices.push({
           device: info[0],
           connected: info[2] === 'connected' ? true : false,
           connection: info[3] === '--' ? null : info[3]
         });
       });
-      
+
+      console.log('GET WIRED DEVICES', wiredDevices);
+
       callback && callback(null, wiredDevices);
   });
 }
