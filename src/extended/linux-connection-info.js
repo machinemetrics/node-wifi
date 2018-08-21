@@ -44,12 +44,12 @@ function getConnectionInfo(config, connection, callback) {
 }
 
 module.exports = function (config) {
-  return function (device, callback) {
+  return function (connection, callback) {
     if (callback) {
-      getConnectionInfo(config, info, callback);
+      getConnectionInfo(config, connection, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        getConnectionInfo(config, device, function (err, data) {
+        getConnectionInfo(config, connection, function (err, data) {
           if (err) {
             reject(err);
           } else {
