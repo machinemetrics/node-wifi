@@ -4,6 +4,8 @@ var env = require('../env');
 
 function getWiredDevices(config, callback) {
 
+
+  console.log('USAO U GET WIRED DEVICES');
   var commandStr = "nmcli -t -f DEVICE,TYPE,STATE,CONNECTION dev status | grep ethernet"
 
   exec(commandStr, env, function(err, stdOut) {
@@ -12,6 +14,7 @@ function getWiredDevices(config, callback) {
         return;
       }
       var data = stdOut.split('\n');
+      console.log('GET WIRED DEVICES', data);
       var wiredDevices = [];
 
       data.forEach(element => {
