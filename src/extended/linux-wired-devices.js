@@ -20,6 +20,9 @@ function getWiredDevices(config, callback) {
 
       data.forEach(element => {
         var info = element.split(':');
+        info.pop();
+        console.log('ELEMENT', element);
+        console.log('INFO', info);
         wiredDevices.push({
           device: info[0],
           connected: info[2] === 'connected' ? true : false,
