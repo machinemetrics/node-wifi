@@ -14,6 +14,7 @@ function getWiredDevices(config, callback) {
         return;
       }
       var data = stdOut.split('\n');
+      data.pop();
       console.log('GET WIRED DEVICES', data);
       var wiredDevices = [];
 

@@ -15,6 +15,7 @@ function getConnectionInfo(config, connection, callback) {
         return;
       }
       var data = stdOut.split('\n');
+      data.pop();
       var connectionInfo;
       if (data.length === 2) {
         if (data[0] === '') {
