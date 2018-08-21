@@ -23,8 +23,6 @@ function getWiredDevices(config, callback) {
         });
       });
 
-      console.log('GET WIRED DEVICES', wiredDevices);
-
       callback && callback(null, wiredDevices);
   });
 }
