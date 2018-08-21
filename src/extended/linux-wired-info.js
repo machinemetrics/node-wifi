@@ -2,12 +2,18 @@ var exec = require('child_process').exec;
 var networkUtils = require('../network-utils');
 var env = require('../env');
 
-function getWiredInfo(config, device, callback) {
+function getWiredInfo(config, info, callback) {
 
-  var commandStr = "nmcli dev show " + device + 
-  " | grep IP4.ADDRESS | awk '{print $2}' && nmcli dev show " + device + 
-  " | grep IP4.GATEWAY | awk '{print $2}' && nmcli dev show " + device + 
-  " | grep GENERAL.HWADDR | awk '{print $2}'";
+  var commandStr = "nmcli con show " + info.connection;
+  if (info.active) {
+    commandStr += " | grep IP4.ADDRESS | awk '{print $2}' && nmcli con show " + info.connection + 
+    " | grep IP4.GATEWAY | awk '{print $2}'" 
+  } else {
+    commandStr += " | grep ipv4.addresses | awk '{print $2}' && nmcli con show " + info.connection + 
+    " | grep ipv4.gateway | awk '{print $2}'" 
+  }
+  commandStr += " && nmcli dev show " + info.device + 
+  " | grep GENERAL.HWADDR | awk '{print $2}'"
 
   exec(commandStr, env, function(err, stdOut) {
       if (err) {
@@ -41,12 +47,12 @@ function getWiredInfo(config, device, callback) {
 }
 
 module.exports = function (config) {
-  return function (device, callback) {
+  return function (info, callback) {
     if (callback) {
-      getWiredInfo(config, device, callback);
+      getWiredInfo(config, info, callback);
     } else {
       return new Promise(function (resolve, reject) {
-        getWiredInfo(config, device, function (err, networks) {
+        getWiredInfo(config, info, function (err, networks) {
           if (err) {
             reject(err);
           } else {
